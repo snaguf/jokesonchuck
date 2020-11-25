@@ -1,13 +1,15 @@
 import './App.css';
 import octocat from "./img/octocat.png"
 
-function App() {
+import JokeSearch from "./JokeSearch"
+
+const App = () => {
   return (
     <div className="app">
       <header className="app-header">
         <h1>Jokes on Chuck!</h1>
         <p>A React app for displaying Chuck Norris jokes from [The Internet Chuck Norris Database](http://www.icndb.com).</p>
-
+        <JokeSearch />
       </header>
       <footer className="app-footer">
         <a href="https://github.com/snaguf/jokesonchuck">
