@@ -1,19 +1,11 @@
-import { useFetcher } from "react-ufo"
 import "./JokeSearch.css"
 
-const jokeFetcher = async () => {
-  const response = await fetch("http://api.icndb.com/jokes/random/10")
-  return response.json();
-}
-
-const JokeSearch = () => {
-
-  const [fetchJokes, [loading, error, data]] = useFetcher(jokeFetcher);
+const JokeSearch = ({ onFetch: fetchJokes, loading }) => {
 
   return <div className="joke-search">
     <button
       className="nes-btn is-primary"
-      onClick={e => { if (!loading) fetchJokes() }}
+      onClick={e => { if (!loading) fetchJokes("http://api.icndb.com/jokes/random/10") }}
     >
       Fetch Jokes
     </button>
