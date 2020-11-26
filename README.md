@@ -13,8 +13,8 @@ Made as final work for course "Reaktiivinen selainohjelmointi" in [Satakunta Uni
 - [x] Initialize project
 - [x] Setup continuous deployment (Netlify)
 - [x] Fetch jokes
-- [ ] List latest jokes
-- [ ] Show meaningful indicator when there are no jokes
+- [x] List latest jokes
+- [x] Show meaningful indicator when there are no jokes
 - [ ] Choose ammount of jokes to fetch (at least one)
 - [ ] Choose the category of jokes
 - [ ] Change the names of the joke target
