@@ -21,12 +21,17 @@ const NoJokes = () => {
   </div>
 }
 
+const Jokes = ({ jokes }) => {
+  return jokes.map(({ joke }, i) => {
+    return <Joke text={joke} direction={i % 2 === 0 ? "left" : "right"} />
+  })
+}
+
 const JokeListing = ({ jokes }) => {
+  console.log(jokes.length)
   return <div className="joke-listing nes-container is-rounded is-dark">
     <div className="message-list">
-      {jokes.map(({ joke }, i) => {
-        return <Joke text={joke} direction={i % 2 === 0 ? "left" : "right"} />
-      })}
+      {jokes.length === 0 ? <NoJokes /> : <Jokes jokes={jokes} />}
     </div>
   </div>
 }
