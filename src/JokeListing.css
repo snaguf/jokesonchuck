@@ -1,3 +1,15 @@
 .joke-listing {
   width: 100%;
 }
+
+.message-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.-left {
+  align-self: flex-start;
+}
+.-right {
+  align-self: flex-end;
+}
