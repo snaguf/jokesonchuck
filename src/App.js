@@ -3,6 +3,7 @@ import './App.css';
 import octocat from "./img/octocat.png"
 
 import JokeSearch from "./JokeSearch"
+import JokeListing from "./JokeListing"
 
 const fetchApi = async (url) => {
   const response = await fetch(url);
@@ -20,6 +21,7 @@ const App = () => {
 
       </header>
       <section className="app-content nes-container is-rounded is-dark">
+        <JokeListing />
         <JokeSearch onFetch={fetchJokes} loading={loading} />
       </section>
       <footer className="app-footer">
