@@ -17,8 +17,11 @@ const App = () => {
       <header className="app-header">
         <h1>Jokes on Chuck!</h1>
         <p>A React app for displaying Chuck Norris jokes from [The Internet Chuck Norris Database](http://www.icndb.com).</p>
-        <JokeSearch onFetch={fetchJokes} loading={loading} />
+
       </header>
+      <section className="app-content nes-container is-rounded is-dark">
+        <JokeSearch onFetch={fetchJokes} loading={loading} />
+      </section>
       <footer className="app-footer">
         <a href="https://github.com/snaguf/jokesonchuck">
           <img className="logo" src={octocat} alt="GitHub" />
