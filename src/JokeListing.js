@@ -1,7 +1,7 @@
 import "./JokeListing.css"
 
 const Joke = ({ text, direction }) => {
-  return <section className={`-${direction}`}>
+  return <section className={`message -${direction}`}>
     <div className={`nes-balloon from-${direction} is-dark`}>
       <p>{text}</p>
     </div>
@@ -9,11 +9,12 @@ const Joke = ({ text, direction }) => {
 }
 
 
-const JokeListing = () => {
+const JokeListing = ({ jokes }) => {
   return <div className="joke-listing nes-container is-rounded is-dark">
     <div className="message-list">
-      <Joke text="Joke here!" direction="left" />
-      <Joke text="Joke also here!" direction="right" />
+      {jokes.map(({ joke }, i) => {
+        return <Joke text={joke} direction={i % 2 === 0 ? "left" : "right"} />
+      })}
     </div>
   </div>
 }
