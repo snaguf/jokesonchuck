@@ -1,13 +1,23 @@
+import { useFetcher } from "react-ufo"
 import './App.css';
 import octocat from "./img/octocat.png"
 
-function App() {
+import JokeSearch from "./JokeSearch"
+
+const fetchApi = async (url) => {
+  const response = await fetch(url);
+  return response.json();
+}
+
+const App = () => {
+  const [fetchJokes, [loading]] = useFetcher(fetchApi)
+
   return (
     <div className="app">
       <header className="app-header">
         <h1>Jokes on Chuck!</h1>
         <p>A React app for displaying Chuck Norris jokes from [The Internet Chuck Norris Database](http://www.icndb.com).</p>
-
+        <JokeSearch onFetch={fetchJokes} loading={loading} />
       </header>
       <footer className="app-footer">
         <a href="https://github.com/snaguf/jokesonchuck">
