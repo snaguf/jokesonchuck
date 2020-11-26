@@ -1,0 +1,19 @@
+.joke-listing {
+  width: 100%;
+}
+
+.message-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  max-width: 75%;
+}
+
+.-left {
+  align-self: flex-start;
+}
+.-right {
+  align-self: flex-end;
+}
