@@ -1,10 +1,27 @@
 .joke-listing {
   width: 100%;
+  /* min-height: 400px; */
 }
 
 .message-list {
   display: flex;
   flex-direction: column;
+  padding: 40px;
+}
+
+.walker {
+  align-self: center;
+  width: 200px;
+}
+
+.walker-joke {
+  display: flex;
+  flex-direction: column;
+  /* margin-right: 80px; */
+}
+
+.walker-message {
+  margin-right: 80px;
 }
 
 .message {
