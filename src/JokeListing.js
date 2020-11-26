@@ -10,11 +10,11 @@ const Joke = ({ text, direction }) => {
   </section>
 }
 
-const NoJokes = () => {
+const NoJokes = ({ message }) => {
   return <div className="walker-joke -right">
     <section className="messge walker-message">
       <div className="nes-balloon from-right is-dark ">
-        <p>There are no jokes!</p>
+        <p>{message}</p>
       </div>
     </section>
     <img className="walker -right" src={walker} alt="Brodel Walker" />
@@ -27,11 +27,13 @@ const Jokes = ({ jokes }) => {
   })
 }
 
-const JokeListing = ({ jokes }) => {
-  console.log(jokes.length)
+const JokeListing = ({ jokes, error }) => {
+
+  const message = error ? error.message : "There are no jokes! Fetch!"
+
   return <div className="joke-listing nes-container is-rounded is-dark">
     <div className="message-list">
-      {jokes.length === 0 ? <NoJokes /> : <Jokes jokes={jokes} />}
+      {jokes.length === 0 ? <NoJokes message={message} /> : <Jokes jokes={jokes} />}
     </div>
   </div>
 }

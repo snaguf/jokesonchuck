@@ -11,7 +11,7 @@ const fetchApi = async (url) => {
 }
 
 const App = () => {
-  const [fetchJokes, [loading, , data]] = useFetcher(fetchApi)
+  const [fetchJokes, [loading, error, data]] = useFetcher(fetchApi)
 
   return (
     <div className="app">
@@ -21,7 +21,7 @@ const App = () => {
 
       </header>
       <section className="app-content nes-container is-rounded is-dark">
-        <JokeListing jokes={data ? data.value : []} />
+        <JokeListing jokes={data ? data.value : []} error={error} />
         <JokeSearch onFetch={fetchJokes} loading={loading} />
       </section>
       <footer className="app-footer">
