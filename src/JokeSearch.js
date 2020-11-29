@@ -18,8 +18,9 @@ const JokeSearch = ({ onFetch: fetchJokes, loading }) => {
           onChange={e => { handleAmountChange(e) }} />
       </div>
       <button
-        className="nes-btn is-primary"
         onClick={e => { if (!loading) fetchJokes("https://api.icndb.com/jokes/random/10?escape=javascript") }}
+        className={`nes-btn ${jokeAmount ? "is-primary" : "is-disabled"}`}
+        disabled={!jokeAmount}
       >
         Fetch Jokes
     </button>
