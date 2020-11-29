@@ -9,6 +9,8 @@ const JokeSearch = ({ onFetch: fetchJokes, loading }) => {
     if (e.target.checkValidity()) setJokeAmount(Number(e.target.value))
   }
 
+  const jokeUrl = `https://api.icndb.com/jokes/random/${jokeAmount}?escape=javascript`
+
   return (
     <div className="joke-search nes-container is-rounded is-dark">
       <div className="nes-field is-inline">
@@ -18,9 +20,9 @@ const JokeSearch = ({ onFetch: fetchJokes, loading }) => {
           onChange={e => { handleAmountChange(e) }} />
       </div>
       <button
-        onClick={e => { if (!loading) fetchJokes("https://api.icndb.com/jokes/random/10?escape=javascript") }}
         className={`nes-btn ${jokeAmount ? "is-primary" : "is-disabled"}`}
         disabled={!jokeAmount}
+        onClick={e => { if (!loading) fetchJokes(jokeUrl) }}
       >
         Fetch Jokes
     </button>
