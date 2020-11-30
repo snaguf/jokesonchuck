@@ -22,8 +22,8 @@ const NoJokes = ({ message }) => {
 }
 
 const Jokes = ({ jokes }) => {
-  return jokes.map(({ joke }, i) => {
-    return <Joke text={joke} direction={i % 2 === 0 ? "left" : "right"} />
+  return jokes.map(({ id, joke }, i) => {
+    return <Joke key={id} text={joke} direction={i % 2 === 0 ? "left" : "right"} />
   })
 }
 
