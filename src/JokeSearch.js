@@ -8,7 +8,7 @@ const JokeSearch = ({ onFetch: fetchJokes, loading, categories }) => {
   const [checkedCategories, setCheckedCategories] = useState([]);
 
   const handleAmountChange = (e) => {
-    if (e.target.validity.valueMissing) setJokeAmount(null);
+    if (e.target.validity.valueMissing) setJokeAmount("");
     if (e.target.checkValidity()) setJokeAmount(Number(e.target.value));
   }
 
