@@ -37,7 +37,7 @@ const JokeSearch = ({ onFetch: fetchJokes, loading, categories }) => {
         })}
       </div>
       <div className="nes-field is-inline">
-        <label for="joke-amount">Joke Count</label>
+        <label htmlFor="joke-amount">Joke Count</label>
         <input type="number" min={1} required={true} id="joke-amount"
           className={`nes-input ${!jokeAmount ? "is-error" : ""}`} value={jokeAmount}
           onChange={e => { handleAmountChange(e) }} />
