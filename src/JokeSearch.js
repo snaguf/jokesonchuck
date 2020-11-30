@@ -21,11 +21,17 @@ const JokeSearch = ({ onFetch: fetchJokes, loading, categories }) => {
 
   useEffect(() => {
     setCheckedCategories(c => { return createCategories(categories.data, c) })
-  }, [categories])
+  }, [categories]);
 
   const handleAmountChange = (e) => {
     if (e.target.validity.valueMissing) setJokeAmount(null);
     if (e.target.checkValidity()) setJokeAmount(Number(e.target.value));
+  }
+
+  const handleCategoryChange = ({ target }) => {
+    const obj = { ...checkedCategories };
+    obj[target.name] = target.checked;
+    setCheckedCategories(obj);
   }
 
   const jokeUrl = `https://api.icndb.com/jokes/random/${jokeAmount}?escape=javascript`;
@@ -35,7 +41,9 @@ const JokeSearch = ({ onFetch: fetchJokes, loading, categories }) => {
       <div className="joke-categories" >
         {Object.entries(checkedCategories).map(([key, value]) => {
           return <label key={key}>
-            <input type="checkbox" name={key} class="nes-checkbox is-dark" checked={value} />
+            <input type="checkbox" name={key}
+              class="nes-checkbox is-dark" checked={value}
+              onChange={handleCategoryChange} />
             <span>{key}</span>
           </label>
         })}
