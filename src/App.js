@@ -4,6 +4,7 @@ import octocat from "./img/octocat.png"
 
 import JokeSearch from "./JokeSearch"
 import JokeListing from "./JokeListing"
+import { useEffect } from "react";
 
 const fetchApi = async (url) => {
   const response = await fetch(url);
@@ -12,6 +13,12 @@ const fetchApi = async (url) => {
 
 const App = () => {
   const [fetchJokes, [loading, error, data]] = useFetcher(fetchApi)
+
+  const [fetchCategories, categories] = useFetcher(fetchApi, { loading: true })
+
+  useEffect(() => {
+    fetchCategories("https://api.icndb.com/categories");
+  }, [fetchCategories])
 
   return (
     <div className="app">
@@ -22,7 +29,7 @@ const App = () => {
       </header>
       <section className="app-content nes-container is-rounded is-dark">
         <JokeListing jokes={data ? data.value : []} error={error} />
-        <JokeSearch onFetch={fetchJokes} loading={loading} />
+        <JokeSearch onFetch={fetchJokes} loading={loading} categories={categories.data ? categories.data.value : []} />
       </section>
       <footer className="app-footer">
         <a href="https://github.com/snaguf/jokesonchuck">
