@@ -36,6 +36,14 @@ const JokeSearch = ({ onFetch: fetchJokes, loading, categories }) => {
           </label>
         })}
       </div>
+      <div className="nes-field name-field">
+        <label htmlFor="first-name">First Name</label>
+        <input type="text" id="first-name" className="nes-input" placeholder="Chuck" />
+      </div>
+      <div className="nes-field name-field">
+        <label htmlFor="last-name">Last Name</label>
+        <input type="text" id="last-name" className="nes-input" placeholder="Norris" />
+      </div>
       <div className="nes-field is-inline">
         <label htmlFor="joke-amount">Joke Count</label>
         <input type="number" min={1} required={true} id="joke-amount"

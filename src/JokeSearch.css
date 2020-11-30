@@ -2,10 +2,15 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .joke-categories {
   width: 100%;
+}
+
+.name-field {
+  width: 45%;
 }
 
 label {
