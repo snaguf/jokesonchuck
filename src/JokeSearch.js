@@ -7,6 +7,9 @@ const JokeSearch = ({ onFetch: fetchJokes, loading, categories }) => {
 
   const [checkedCategories, setCheckedCategories] = useState([]);
 
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
   const handleAmountChange = (e) => {
     if (e.target.validity.valueMissing) setJokeAmount("");
     if (e.target.checkValidity()) setJokeAmount(Number(e.target.value));
@@ -38,11 +41,17 @@ const JokeSearch = ({ onFetch: fetchJokes, loading, categories }) => {
       </div>
       <div className="nes-field name-field">
         <label htmlFor="first-name">First Name</label>
-        <input type="text" id="first-name" className="nes-input" placeholder="Chuck" />
+        <input type="text" id="first-name"
+          className="nes-input"
+          placeholder="Chuck" value={firstName}
+          onChange={e => setFirstName(e.target.value)} />
       </div>
       <div className="nes-field name-field">
         <label htmlFor="last-name">Last Name</label>
-        <input type="text" id="last-name" className="nes-input" placeholder="Norris" />
+        <input type="text" id="last-name"
+          className="nes-input"
+          placeholder="Norris" value={lastName}
+          onChange={e => setLastName(e.target.value)} />
       </div>
       <div className="nes-field is-inline">
         <label htmlFor="joke-amount">Joke Count</label>
