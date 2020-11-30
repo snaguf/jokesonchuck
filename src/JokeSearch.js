@@ -24,8 +24,10 @@ const JokeSearch = ({ onFetch: fetchJokes, loading, categories }) => {
   }
 
   const categoryParameter = checkedCategories.length !== 0 ? `&limitTo=[${checkedCategories}]` : "";
+  const firstNameParamter = firstName ? `&firstName=${firstName}` : "";
+  const lastNameParameter = lastName ? `&lastName=${lastName}` : "";
 
-  const jokeUrl = `https://api.icndb.com/jokes/random/${jokeAmount}?escape=javascript${categoryParameter}`;
+  const jokeUrl = `https://api.icndb.com/jokes/random/${jokeAmount}?escape=javascript${categoryParameter}${firstNameParamter}${lastNameParameter}`;
 
   return (
     <div className="joke-search nes-container is-rounded is-dark">
