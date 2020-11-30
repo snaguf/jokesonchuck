@@ -1,4 +1,5 @@
-import "./JokeListing.css"
+import { useEffect, useState } from "react";
+import "./JokeListing.css";
 
 import walker from "./img/walker.png"
 
@@ -28,10 +29,24 @@ const Jokes = ({ jokes }) => {
 }
 
 const JokeListing = ({ jokes, error }) => {
+  const [uniques, setUniques] = useState(new Set(jokes));
+
+  useEffect(() => {
+    if (jokes.length !== 0) {
+      setUniques((old) => {
+        return jokes.reduce((acc, { id }) => {
+          return acc.add(id);
+        }, new Set([...old]))
+      })
+    }
+  }, [jokes])
 
   const message = error ? error.message : "There are no jokes! Fetch!"
 
   return <div className="joke-listing nes-container is-rounded is-dark">
+    <div>
+      <p>Unique Jokes: {uniques.size}</p>
+    </div>
     <div className="message-list">
       {jokes.length === 0 ? <NoJokes message={message} /> : <Jokes jokes={jokes} />}
     </div>
