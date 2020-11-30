@@ -29,7 +29,7 @@ const App = () => {
       </header>
       <section className="app-content nes-container is-rounded is-dark">
         <JokeListing jokes={data ? data.value : []} error={error} />
-        <JokeSearch onFetch={fetchJokes} loading={loading} />
+        <JokeSearch onFetch={fetchJokes} loading={loading} categories={categories} />
       </section>
       <footer className="app-footer">
         <a href="https://github.com/snaguf/jokesonchuck">
