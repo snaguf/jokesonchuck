@@ -32,6 +32,9 @@ const JokeListing = ({ jokes, error }) => {
   const message = error ? error.message : "There are no jokes! Fetch!"
 
   return <div className="joke-listing nes-container is-rounded is-dark">
+    <div>
+      <p>Unique Jokes: {10}</p>
+    </div>
     <div className="message-list">
       {jokes.length === 0 ? <NoJokes message={message} /> : <Jokes jokes={jokes} />}
     </div>
