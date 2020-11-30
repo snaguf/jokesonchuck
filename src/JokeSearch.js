@@ -1,27 +1,11 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import "./JokeSearch.css"
 
-
-const createCategories = (categories, old) => {
-  if (categories && categories.value) {
-    return Object.assign(categories.value.reduce((acc, value) => {
-      const obj = { ...acc };
-      obj[value] = true;
-      return obj;
-    }, {}), old)
-  } else {
-    return old
-  }
-}
 
 const JokeSearch = ({ onFetch: fetchJokes, loading, categories }) => {
   const [jokeAmount, setJokeAmount] = useState(10);
 
-  const [checkedCategories, setCheckedCategories] = useState({});
-
-  useEffect(() => {
-    setCheckedCategories(c => { return createCategories(categories.data, c) })
-  }, [categories]);
+  const [checkedCategories, setCheckedCategories] = useState([]);
 
   const handleAmountChange = (e) => {
     if (e.target.validity.valueMissing) setJokeAmount(null);
@@ -29,9 +13,11 @@ const JokeSearch = ({ onFetch: fetchJokes, loading, categories }) => {
   }
 
   const handleCategoryChange = ({ target }) => {
-    const obj = { ...checkedCategories };
-    obj[target.name] = target.checked;
-    setCheckedCategories(obj);
+    if (target.checked) {
+      setCheckedCategories(c => [...c, target.name])
+    } else {
+      setCheckedCategories(c => c.filter(value => value !== target.name))
+    }
   }
 
   const jokeUrl = `https://api.icndb.com/jokes/random/${jokeAmount}?escape=javascript`;
@@ -39,15 +25,14 @@ const JokeSearch = ({ onFetch: fetchJokes, loading, categories }) => {
   return (
     <div className="joke-search nes-container is-rounded is-dark">
       <div className="joke-categories" >
-        {Object.entries(checkedCategories).map(([key, value]) => {
-          return <label key={key}>
-            <input type="checkbox" name={key}
-              class="nes-checkbox is-dark" checked={value}
+        {categories.map((category) => {
+          return <label key={category}>
+            <input type="checkbox" name={category}
+              className="nes-checkbox is-dark" checked={checkedCategories.includes(category)}
               onChange={handleCategoryChange} />
-            <span>{key}</span>
+            <span>{category}</span>
           </label>
         })}
-
       </div>
       <div className="nes-field is-inline">
         <label for="joke-amount">Joke Count</label>
