@@ -7,6 +7,9 @@ const JokeSearch = ({ onFetch: fetchJokes, loading, categories }) => {
 
   const [checkedCategories, setCheckedCategories] = useState([]);
 
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
   const handleAmountChange = (e) => {
     if (e.target.validity.valueMissing) setJokeAmount("");
     if (e.target.checkValidity()) setJokeAmount(Number(e.target.value));
@@ -21,8 +24,10 @@ const JokeSearch = ({ onFetch: fetchJokes, loading, categories }) => {
   }
 
   const categoryParameter = checkedCategories.length !== 0 ? `&limitTo=[${checkedCategories}]` : "";
+  const firstNameParamter = firstName ? `&firstName=${firstName}` : "";
+  const lastNameParameter = lastName ? `&lastName=${lastName}` : "";
 
-  const jokeUrl = `https://api.icndb.com/jokes/random/${jokeAmount}?escape=javascript${categoryParameter}`;
+  const jokeUrl = `https://api.icndb.com/jokes/random/${jokeAmount}?escape=javascript${categoryParameter}${firstNameParamter}${lastNameParameter}`;
 
   return (
     <div className="joke-search nes-container is-rounded is-dark">
@@ -35,6 +40,20 @@ const JokeSearch = ({ onFetch: fetchJokes, loading, categories }) => {
             <span>{category}</span>
           </label>
         })}
+      </div>
+      <div className="nes-field name-field">
+        <label htmlFor="first-name">First Name</label>
+        <input type="text" id="first-name"
+          className="nes-input"
+          placeholder="Chuck" value={firstName}
+          onChange={e => setFirstName(e.target.value)} />
+      </div>
+      <div className="nes-field name-field">
+        <label htmlFor="last-name">Last Name</label>
+        <input type="text" id="last-name"
+          className="nes-input"
+          placeholder="Norris" value={lastName}
+          onChange={e => setLastName(e.target.value)} />
       </div>
       <div className="nes-field is-inline">
         <label htmlFor="joke-amount">Joke Count</label>
