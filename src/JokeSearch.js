@@ -5,7 +5,7 @@ import "./JokeSearch.css"
 const JokeSearch = ({ onFetch: fetchJokes, loading, categories }) => {
   const [jokeAmount, setJokeAmount] = useState(10);
 
-  const [checkedCategories, setCheckedCategories] = useState([]);
+  const [checkedCategory, setCheckedCategory] = useState("");
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -16,14 +16,10 @@ const JokeSearch = ({ onFetch: fetchJokes, loading, categories }) => {
   }
 
   const handleCategoryChange = ({ target }) => {
-    if (target.checked) {
-      setCheckedCategories(c => [...c, target.name])
-    } else {
-      setCheckedCategories(c => c.filter(value => value !== target.name))
-    }
+    setCheckedCategory(target.value)
   }
 
-  const categoryParameter = checkedCategories.length !== 0 ? `&limitTo=[${checkedCategories}]` : "";
+  const categoryParameter = checkedCategory ? `&limitTo=[${checkedCategory}]` : "";
   const firstNameParamter = firstName ? `&firstName=${firstName}` : "";
   const lastNameParameter = lastName ? `&lastName=${lastName}` : "";
 
@@ -32,12 +28,12 @@ const JokeSearch = ({ onFetch: fetchJokes, loading, categories }) => {
   return (
     <div className="joke-search nes-container is-rounded is-dark">
       <div className="joke-categories" >
-        <label for="category-select">Category</label>
+        <label htmlFor="category-select">Category</label>
         <div className="nes-select">
-          <select id="category-select">
+          <select id="category-select" onChange={handleCategoryChange}>
             <option value="">All categories</option>
             {categories.map((category) => {
-              return <option value={category}>{category}</option>
+              return <option key={category} value={category}>{category}</option>
             })}
           </select>
         </div>
