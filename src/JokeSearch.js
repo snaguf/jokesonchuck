@@ -32,14 +32,15 @@ const JokeSearch = ({ onFetch: fetchJokes, loading, categories }) => {
   return (
     <div className="joke-search nes-container is-rounded is-dark">
       <div className="joke-categories" >
-        {categories.map((category) => {
-          return <label key={category}>
-            <input type="checkbox" name={category}
-              className="nes-checkbox is-dark" checked={checkedCategories.includes(category)}
-              onChange={handleCategoryChange} />
-            <span>{category}</span>
-          </label>
-        })}
+        <label for="category-select">Category</label>
+        <div className="nes-select">
+          <select id="category-select">
+            <option value="">All categories</option>
+            {categories.map((category) => {
+              return <option value={category}>{category}</option>
+            })}
+          </select>
+        </div>
       </div>
       <div className="nes-field name-field">
         <label htmlFor="first-name">First Name</label>
