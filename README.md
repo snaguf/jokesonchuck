@@ -7,15 +7,3 @@ A React app for displaying Chuck Norris jokes from [The Internet Chuck Norris Da
 App is still under development but is hosted on [Netlify](https://jokesonchuck.netlify.app).
 
 Made as final work for course "Reaktiivinen selainohjelmointi" in [Satakunta University of Applied Sciences](https://www.samk.fi/en/).
-
-## To-do
-
-- [x] Initialize project
-- [x] Setup continuous deployment (Netlify)
-- [x] Fetch jokes
-- [x] List latest jokes
-- [x] Show meaningful indicator when there are no jokes
-- [ ] Choose ammount of jokes to fetch (at least one)
-- [ ] Choose the category of jokes
-- [ ] Change the names of the joke target
-- [ ] Show count of unique jokes for "session"
